@@ -8,6 +8,17 @@ variable "engine_version" {
 
 variable "instance_class" {
   type = string
+
+}
+
+variable "identifier_prefix" {
+  type    = string
+  default = "dev"
+}
+
+variable "identifier_class" {
+  type    = string
+  default = "db.t3.small"
 }
 
 variable "db_name" {
@@ -39,7 +50,7 @@ variable "db_subnet_group_name" {
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }
 

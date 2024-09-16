@@ -4,6 +4,10 @@ provider "aws" {
   region = "us-west-2" # Replace with your desired AWS region
 }
 
+module "github-actions-oidc" {
+  source = "../../modules/github-aws"
+}
+
 module "podcast-cliff-infra" {
   source = "../../modules/podcast-cliff-infra"
 

@@ -7,7 +7,7 @@ module "postgres" {
   allocated_storage    = var.postgres_allocated_storage
   engine_version       = "16.4"
   instance_class       = var.postgres_instance_class
-  db_name              = "podcast-cliff-${var.environment}"
+  db_name              = "podcastcliff${var.environment}"
   username             = "podcastcliff"
   parameter_group_name = "default.postgres16"
 

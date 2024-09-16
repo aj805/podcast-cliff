@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "ecr_acces" {
+data "aws_iam_policy_document" "ecr_access" {
   version = "2012-10-17"
 
   statement {
@@ -32,10 +32,10 @@ data "aws_iam_policy_document" "ecr_acces" {
 resource "aws_iam_role" "ecr_acces" {
   name               = "gha-ecr"
   description        = "Github Actions access to ECR"
-  assume_role_policy = data.aws_iam_policy_document.ecr_acces.json
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   inline_policy {
     name   = "ecr_access"
-    policy = data.aws_iam_policy_document.ecr_acces.json
+    policy = data.aws_iam_policy_document.ecr_access.json
   }
 }

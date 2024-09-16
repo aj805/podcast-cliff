@@ -13,10 +13,11 @@ data "aws_iam_policy_document" "deploy_lambda" {
   }
 }
 
+
 resource "aws_iam_role" "deploy_lambda" {
   name               = "gha-deploy-lambda"
   description        = "Github Actions access to deploy lambda"
-  assume_role_policy = data.aws_iam_policy_document.deploy_lambda.json
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   inline_policy {
     name   = "deploy_lambda"
