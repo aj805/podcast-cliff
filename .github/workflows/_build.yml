@@ -1,0 +1,68 @@
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - cicd
+  workflow_call:
+    inputs:
+      aws_account_id:
+        type: string
+        required: true
+        description: 'AWS Account ID'
+        default: '305578904386'
+      aws_region:
+        type: string
+        required: true
+        description: 'AWS Region'
+        default: 'us-west-2'
+      dockerfile:
+        type: string
+        required: true
+        description: 'Dockerfile path'
+        default: 'Dockerfile'
+      context:
+        type: string
+        required: true
+        description: 'Docker context'
+        default: './message-processor'
+
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+  actions: read
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ inputs.aws_region }}
+          role-to-assume: "gha-ecr"
+          mask-aws-account-id: "no"
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          mask-password: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ inputs.context }}
+          file: ${{ inputs.dockerfile }}
+          platforms: linux/amd64
+          push: true
+          tags: ${{ inputs.aws_account_id }}.dkr.ecr.${{ inputs.aws_region }}.amazonaws.com/podcast-cliff:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha, mode=max
+
