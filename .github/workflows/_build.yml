@@ -9,22 +9,22 @@ on:
     inputs:
       aws_account_id:
         type: string
-        #required: true
+        required: false
         description: 'AWS Account ID'
         default: '305578904386'
       aws_region:
         type: string
-        #required: true
+        required: false
         description: 'AWS Region'
         default: 'us-west-2'
       dockerfile:
         type: string
-        #equired: true
+        required: false
         description: 'Dockerfile path'
         default: 'Dockerfile'
       context:
         type: string
-        #required: true
+        required: false
         description: 'Docker context'
         default: './message-processor'
 
