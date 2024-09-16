@@ -17,7 +17,7 @@ on:
         type: string
         required: false
         description: 'Dockerfile path'
-        default: 'Dockerfile'
+        default: 'message-processor/Dockerfile'
       context:
         type: string
         required: false
