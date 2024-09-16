@@ -42,10 +42,17 @@ jobs:
 
     steps:
 
+      - name: Echo Inputs
+        run: |
+          echo "AWS Account ID: ${{ inputs.aws_account_id }}"
+          echo "AWS Region: ${{ inputs.aws_region }}"
+          echo "Dockerfile: ${{ inputs.dockerfile }}"
+          echo "Context: ${{ inputs.context }}"
+
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ inputs.aws_region }}
+          aws-region: 'us-west-2'
           role-to-assume: "gha-ecr"
           mask-aws-account-id: "no"
       - name: Login to Amazon ECR
