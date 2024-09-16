@@ -2,9 +2,12 @@
 data
 message-processor/__pycache__/
 */venv
+__pycache__/
+venv
 .env
 *.code-workspace
 .vscode
 .terraform
 *.tfstate*
+*.tfstate.backup
 tfplan
