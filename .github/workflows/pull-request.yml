@@ -1,7 +1,6 @@
 name: Pull Request
 
 on:
-  push: # tmp for testing
   pull_request:
 
 permissions:
