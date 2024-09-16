@@ -9,23 +9,16 @@ data "aws_iam_policy_document" "assume_role" {
     }
 
     condition {
-      test     = "ForAnyValue:StringEquals"
+      test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
       values   = ["sts.amazonaws.com"]
     }
 
     condition {
-      test     = "ForAnyValue:StringEquals"
-      variable = "token.actions.githubusercontent.com:iss"
-      values   = ["https://token.actions.githubusercontent.com"]
-    }
-
-    condition {
-      test     = "ForAnyValue:StringLike"
+      test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values = [
-        "repo:aj805/podcast-cliff:*",
-        "repo:jsamos/podcast-cliff:*"
+        "repo:aj805/podcast-cliff:*"
       ]
     }
 
