@@ -1,10 +1,6 @@
 name: Docker Build
 
 on:
-  push:
-    branches:
-      - cicd
-      - 9-1
   workflow_call:
     inputs:
       aws_account_id:
@@ -41,13 +37,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Echo Inputs
-        run: |
-          echo "AWS Account ID: ${{ inputs.aws_account_id }}"
-          echo "AWS Region: ${{ inputs.aws_region }}"
-          echo "Dockerfile: ${{ inputs.dockerfile }}"
-          echo "Context: ${{ inputs.context }}"
 
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
