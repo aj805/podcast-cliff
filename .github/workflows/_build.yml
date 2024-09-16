@@ -41,9 +41,11 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: 'us-west-2'
+          aws-region: ${{ inputs.aws_region }}
           role-to-assume: "gha-ecr"
           mask-aws-account-id: "no"
+          aws-account-id: ${{ inputs.aws_account_id }}
+
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
         with:
