@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "ecr_access" {
       "ecr:CompleteLayerUpload",
       "ecr:PutImage"
     ]
-    resources = ["*"]
+    resources = ["arn:aws:ecr:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:repository/*"]
   }
 
   statement {
