@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - cicd
+      - 9-1
   workflow_call:
     inputs:
       aws_account_id:
