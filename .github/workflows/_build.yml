@@ -22,7 +22,7 @@ on:
         type: string
         required: false
         description: 'Docker context'
-        default: './message-processor'
+        default: 'message-processor'
 
 
 permissions:
